@@ -1,0 +1,1049 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OHIO SOUNDBOARD (WRONG)</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=VT323&family=Bungee+Shade&family=Chakra+Petch:wght@400;700&display=swap');
+
+  :root {
+    --ohio-red: #c62828;
+    --ohio-blue: #0d47a1;
+    --ohio-white: #fafafa;
+    --wrong-green: #76ff03;
+    --wrong-pink: #ff6ec7;
+    --wrong-yellow: #ffd600;
+    --wrong-cyan: #00e5ff;
+    --wrong-orange: #ff6d00;
+    --bg-gray: #c0c0c0;
+    --win95-shadow: #808080;
+    --win95-highlight: #ffffff;
+    --win95-dark: #404040;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg-gray);
+    font-family: 'Chakra Petch', monospace;
+    min-height: 100vh;
+    overflow-x: hidden;
+    cursor: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='32' height='32'><text y='28' font-size='28'>🌽</text></svg>") 4 4, auto;
+  }
+
+  body.ohio-mode {
+    filter: saturate(2.5) contrast(1.3);
+    animation: ohioShake 0.1s infinite;
+  }
+
+  @keyframes ohioShake {
+    0%, 100% { transform: translate(0); }
+    25% { transform: translate(-1px, 1px); }
+    50% { transform: translate(1px, -1px); }
+    75% { transform: translate(-1px, -1px); }
+  }
+
+  .ohio-flag-bg {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    z-index: 0;
+    opacity: 0.08;
+    background:
+      repeating-linear-gradient(0deg,
+        var(--ohio-red) 0px, var(--ohio-red) 40px,
+        var(--ohio-white) 40px, var(--ohio-white) 80px,
+        var(--ohio-red) 80px, var(--ohio-red) 120px,
+        var(--ohio-white) 120px, var(--ohio-white) 160px,
+        var(--ohio-blue) 160px, var(--ohio-blue) 200px
+      );
+    pointer-events: none;
+  }
+
+  .pennant-left, .pennant-right {
+    position: fixed;
+    width: 0;
+    height: 0;
+    z-index: 0;
+    opacity: 0.12;
+    pointer-events: none;
+  }
+  .pennant-left {
+    top: 0; left: 0;
+    border-top: 50vh solid var(--ohio-blue);
+    border-right: 30vw solid transparent;
+  }
+  .pennant-right {
+    bottom: 0; right: 0;
+    border-bottom: 50vh solid var(--ohio-red);
+    border-left: 30vw solid transparent;
+  }
+
+  .container {
+    position: relative;
+    z-index: 1;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 16px;
+  }
+
+  /* WIN95 WINDOW */
+  .window {
+    border: 2px solid;
+    border-color: var(--win95-highlight) var(--win95-dark) var(--win95-dark) var(--win95-highlight);
+    background: var(--bg-gray);
+    margin-bottom: 12px;
+  }
+
+  .title-bar {
+    background: linear-gradient(90deg, #000080, #1084d0);
+    color: white;
+    padding: 3px 4px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-family: 'VT323', monospace;
+    font-size: 14px;
+    user-select: none;
+  }
+
+  .title-bar-buttons {
+    display: flex;
+    gap: 2px;
+  }
+
+  .title-btn {
+    width: 16px;
+    height: 14px;
+    background: var(--bg-gray);
+    border: 1px solid;
+    border-color: var(--win95-highlight) var(--win95-dark) var(--win95-dark) var(--win95-highlight);
+    font-size: 9px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-family: 'VT323', monospace;
+  }
+
+  .window-body {
+    padding: 12px;
+    border: 2px solid;
+    border-color: var(--win95-dark) var(--win95-highlight) var(--win95-highlight) var(--win95-dark);
+    margin: 2px;
+  }
+
+  /* HEADER */
+  .header {
+    text-align: center;
+    padding: 20px 10px;
+    position: relative;
+  }
+
+  .main-title {
+    font-family: 'Bungee Shade', cursive;
+    font-size: clamp(2.5rem, 8vw, 5rem);
+    color: var(--ohio-red);
+    text-shadow:
+      3px 3px 0 var(--ohio-blue),
+      -2px -2px 0 var(--wrong-yellow),
+      6px 6px 0 rgba(0,0,0,0.2);
+    letter-spacing: 0.1em;
+    line-height: 1;
+    animation: titlePulse 3s ease-in-out infinite;
+    transition: all 0.3s;
+  }
+
+  .main-title.glitch {
+    animation: titleGlitch 0.15s ease;
+  }
+
+  @keyframes titlePulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.02); }
+  }
+
+  @keyframes titleGlitch {
+    0% { transform: skewX(0deg); filter: hue-rotate(0deg); }
+    20% { transform: skewX(-10deg); filter: hue-rotate(90deg); }
+    40% { transform: skewX(5deg) translateX(5px); }
+    60% { transform: skewX(-3deg) translateX(-5px); filter: hue-rotate(180deg); }
+    80% { transform: skewX(8deg); }
+    100% { transform: skewX(0deg); filter: hue-rotate(0deg); }
+  }
+
+  .subtitle {
+    font-family: 'VT323', monospace;
+    font-size: 1.2rem;
+    color: var(--win95-dark);
+    margin-top: 8px;
+    opacity: 0.8;
+  }
+
+  .subtitle .wrong {
+    color: var(--ohio-red);
+    text-decoration: line-through wavy var(--wrong-pink);
+  }
+
+  /* OHIO CIRCLE */
+  .ohio-circle {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: var(--ohio-white);
+    border: 4px solid var(--ohio-red);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: circleFloat 4s ease-in-out infinite;
+  }
+  .ohio-circle::after {
+    content: '⭐';
+    font-size: 20px;
+  }
+
+  @keyframes circleFloat {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-8px) rotate(10deg); }
+  }
+
+  /* CONTROLS BAR */
+  .controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 8px;
+  }
+
+  .ohio-mode-toggle {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-family: 'VT323', monospace;
+    font-size: 16px;
+    color: var(--ohio-red);
+    cursor: pointer;
+    padding: 4px 12px;
+    background: var(--bg-gray);
+    border: 2px solid;
+    border-color: var(--win95-highlight) var(--win95-dark) var(--win95-dark) var(--win95-highlight);
+    user-select: none;
+  }
+  .ohio-mode-toggle:active {
+    border-color: var(--win95-dark) var(--win95-highlight) var(--win95-highlight) var(--win95-dark);
+  }
+
+  .ohio-mode-toggle input {
+    accent-color: var(--ohio-red);
+    width: 16px;
+    height: 16px;
+  }
+
+  .all-sounds-btn {
+    font-family: 'VT323', monospace;
+    font-size: 16px;
+    padding: 6px 16px;
+    background: var(--ohio-red);
+    color: white;
+    border: 2px solid;
+    border-color: #ff5252 #7f0000 #7f0000 #ff5252;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    transition: all 0.1s;
+  }
+  .all-sounds-btn:hover {
+    background: #d50000;
+    transform: scale(1.05);
+  }
+  .all-sounds-btn:active {
+    border-color: #7f0000 #ff5252 #ff5252 #7f0000;
+    transform: scale(0.95);
+  }
+
+  /* SOUNDBOARD GRID */
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 10px;
+    padding: 8px 0;
+  }
+
+  .sound-btn {
+    aspect-ratio: 1;
+    border: 3px solid;
+    border-color: var(--win95-highlight) var(--win95-dark) var(--win95-dark) var(--win95-highlight);
+    background: linear-gradient(135deg, #e0e0e0, #b0b0b0);
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 10px;
+    font-family: 'VT323', monospace;
+    font-size: 14px;
+    color: var(--win95-dark);
+    transition: all 0.1s;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+  }
+
+  .sound-btn::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    opacity: 0;
+    transition: opacity 0.2s;
+    pointer-events: none;
+  }
+
+  .sound-btn:nth-child(1)::before { background: var(--ohio-red); }
+  .sound-btn:nth-child(2)::before { background: var(--ohio-blue); }
+  .sound-btn:nth-child(3)::before { background: var(--wrong-green); }
+  .sound-btn:nth-child(4)::before { background: var(--wrong-pink); }
+  .sound-btn:nth-child(5)::before { background: var(--wrong-yellow); }
+  .sound-btn:nth-child(6)::before { background: var(--wrong-cyan); }
+  .sound-btn:nth-child(7)::before { background: var(--wrong-orange); }
+  .sound-btn:nth-child(8)::before { background: var(--ohio-red); }
+  .sound-btn:nth-child(9)::before { background: #9c27b0; }
+  .sound-btn:nth-child(10)::before { background: var(--ohio-blue); }
+  .sound-btn:nth-child(11)::before { background: #4caf50; }
+  .sound-btn:nth-child(12)::before { background: var(--wrong-pink); }
+
+  .sound-btn:hover::before { opacity: 0.15; }
+
+  .sound-btn:active,
+  .sound-btn.playing {
+    border-color: var(--win95-dark) var(--win95-highlight) var(--win95-highlight) var(--win95-dark);
+    transform: scale(0.96);
+  }
+  .sound-btn.playing::before { opacity: 0.3; }
+
+  .sound-btn .emoji {
+    font-size: 2rem;
+    line-height: 1;
+    filter: drop-shadow(1px 1px 0 rgba(0,0,0,0.2));
+  }
+
+  .sound-btn .label {
+    font-size: 12px;
+    line-height: 1.1;
+    max-width: 100%;
+    word-wrap: break-word;
+  }
+
+  .sound-btn .wrong-tag {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    background: var(--ohio-red);
+    color: white;
+    font-size: 8px;
+    padding: 1px 4px;
+    transform: rotate(12deg);
+    border-radius: 2px;
+  }
+
+  /* CHAOS METER */
+  .meter-section {
+    margin-top: 8px;
+  }
+
+  .meter-label {
+    font-family: 'VT323', monospace;
+    font-size: 14px;
+    color: var(--win95-dark);
+    margin-bottom: 4px;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .meter-track {
+    height: 24px;
+    background: #000;
+    border: 2px solid;
+    border-color: var(--win95-dark) var(--win95-highlight) var(--win95-highlight) var(--win95-dark);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .meter-fill {
+    height: 100%;
+    width: 0%;
+    transition: width 0.3s ease-out;
+    background: repeating-linear-gradient(
+      90deg,
+      var(--wrong-green) 0px,
+      var(--wrong-green) 6px,
+      var(--wrong-yellow) 6px,
+      var(--wrong-yellow) 12px,
+      var(--ohio-red) 12px,
+      var(--ohio-red) 18px
+    );
+    position: relative;
+  }
+
+  .meter-fill::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: linear-gradient(180deg, rgba(255,255,255,0.3) 0%, transparent 50%, rgba(0,0,0,0.2) 100%);
+  }
+
+  .meter-full-text {
+    display: none;
+    font-family: 'VT323', monospace;
+    font-size: 16px;
+    color: var(--ohio-red);
+    text-align: center;
+    margin-top: 4px;
+    animation: blink 0.5s infinite;
+  }
+
+  .meter-full-text.visible {
+    display: block;
+  }
+
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+
+  /* STATUS BAR */
+  .status-bar {
+    display: flex;
+    gap: 4px;
+    margin-top: 8px;
+    font-family: 'VT323', monospace;
+    font-size: 13px;
+    color: var(--win95-dark);
+  }
+
+  .status-item {
+    flex: 1;
+    padding: 2px 6px;
+    border: 1px solid;
+    border-color: var(--win95-dark) var(--win95-highlight) var(--win95-highlight) var(--win95-dark);
+    background: var(--bg-gray);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  /* FLOATING OHIO FLAGS */
+  .flag-float {
+    position: fixed;
+    pointer-events: none;
+    z-index: 999;
+    font-size: 2rem;
+    animation: flagDrift 3s ease-out forwards;
+    opacity: 0.8;
+  }
+
+  @keyframes flagDrift {
+    0% { transform: translateY(0) rotate(0deg) scale(1); opacity: 0.8; }
+    100% { transform: translateY(-200px) rotate(360deg) scale(0); opacity: 0; }
+  }
+
+  /* OHIO MODE SCANLINES */
+  body.ohio-mode::after {
+    content: '';
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(0,0,0,0.1) 2px,
+      rgba(0,0,0,0.1) 4px
+    );
+    pointer-events: none;
+    z-index: 9999;
+  }
+
+  /* MARQUEE */
+  .marquee-bar {
+    background: var(--ohio-blue);
+    color: var(--wrong-yellow);
+    font-family: 'VT323', monospace;
+    font-size: 14px;
+    padding: 3px 0;
+    overflow: hidden;
+    white-space: nowrap;
+    border: 1px solid;
+    border-color: var(--win95-dark) var(--win95-highlight) var(--win95-highlight) var(--win95-dark);
+    margin-bottom: 8px;
+  }
+
+  .marquee-inner {
+    display: inline-block;
+    animation: marqueeScroll 20s linear infinite;
+  }
+
+  @keyframes marqueeScroll {
+    0% { transform: translateX(100vw); }
+    100% { transform: translateX(-100%); }
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 600px) {
+    .grid { grid-template-columns: repeat(3, 1fr); gap: 6px; }
+    .sound-btn .emoji { font-size: 1.5rem; }
+    .sound-btn .label { font-size: 10px; }
+    .main-title { font-size: 2rem; }
+  }
+</style>
+</head>
+<body>
+<div class="ohio-flag-bg"></div>
+<div class="pennant-left"></div>
+<div class="pennant-right"></div>
+
+<div class="container">
+  <!-- MARQUEE -->
+  <div class="marquee-bar">
+    <span class="marquee-inner" id="marquee">
+      ⚠️ WELCOME TO OHIO ⚠️ EVERY SOUND IS WRONG ⚠️ WE DON'T KNOW WHY ⚠️ OHIO IS A STATE OF MIND ⚠️ YOU CAN'T LEAVE ⚠️ THE SOUNDS ARE NOT RIGHT ⚠️ THIS IS NORMAL IN OHIO ⚠️ TRUST THE PROCESS ⚠️ OHIO WILL OHIO ⚠️
+    </span>
+  </div>
+
+  <!-- MAIN WINDOW -->
+  <div class="window">
+    <div class="title-bar">
+      <span>📢 ohio_soundboard_WRONG.exe</span>
+      <div class="title-bar-buttons">
+        <div class="title-btn">_</div>
+        <div class="title-btn">□</div>
+        <div class="title-btn" onclick="alert('You cannot close Ohio.')">✕</div>
+      </div>
+    </div>
+    <div class="window-body">
+
+      <!-- HEADER -->
+      <div class="header">
+        <div class="main-title" id="mainTitle">OHIO</div>
+        <div class="subtitle">SOUNDBOARD — <span class="wrong">BUT IT'S WRONG</span></div>
+        <div class="ohio-circle"></div>
+      </div>
+
+      <!-- CONTROLS -->
+      <div class="controls">
+        <label class="ohio-mode-toggle">
+          <input type="checkbox" id="ohioMode">
+          ☢️ OHIO MODE
+        </label>
+        <button class="all-sounds-btn" id="playAll">🔊 PLAY ALL AT ONCE</button>
+      </div>
+
+      <!-- GRID -->
+      <div class="grid" id="soundGrid"></div>
+
+      <!-- CHAOS METER -->
+      <div class="meter-section">
+        <div class="meter-label">
+          <span>OHIO ENERGY:</span>
+          <span id="meterPercent">0%</span>
+        </div>
+        <div class="meter-track">
+          <div class="meter-fill" id="meterFill"></div>
+        </div>
+        <div class="meter-full-text" id="meterFullText">⚠️ MAXIMUM OHIO ACHIEVED ⚠️ (nothing happens)</div>
+      </div>
+
+      <!-- STATUS BAR -->
+      <div class="status-bar">
+        <div class="status-item" id="statusSounds">Sounds played: 0</div>
+        <div class="status-item" id="statusWrong">Wrongness: SUBTLE</div>
+        <div class="status-item" id="statusOhio">Ohio status: ALWAYS</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+const AudioCtx = window.AudioContext || window.webkitAudioContext;
+let audioCtx = null;
+let soundCount = 0;
+let meterValue = 0;
+let ohioModeOn = false;
+
+function getCtx() {
+  if (!audioCtx) audioCtx = new AudioCtx();
+  return audioCtx;
+}
+
+// ========== SOUND DEFINITIONS ==========
+// Each sound is generated via Web Audio API with intentional "wrongness"
+const sounds = [
+  {
+    emoji: '🌽',
+    label: '"Ohio" (wrong pitch)',
+    wrongTag: 'SHIFTED',
+    play: (ctx, dest) => {
+      // A voice-like "oh-hi-oh" but pitch shifted weirdly
+      const dur = 1.2;
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      const filter = ctx.createBiquadFilter();
+      osc.type = 'sawtooth';
+      filter.type = 'bandpass';
+      filter.frequency.value = 800;
+      filter.Q.value = 5;
+      osc.frequency.setValueAtTime(155, ctx.currentTime);
+      osc.frequency.linearRampToValueAtTime(220, ctx.currentTime + 0.2);
+      osc.frequency.linearRampToValueAtTime(310, ctx.currentTime + 0.5);
+      osc.frequency.linearRampToValueAtTime(165, ctx.currentTime + 0.8);
+      osc.frequency.linearRampToValueAtTime(175, ctx.currentTime + dur);
+      gain.gain.setValueAtTime(0.25, ctx.currentTime);
+      gain.gain.linearRampToValueAtTime(0, ctx.currentTime + dur);
+      osc.connect(filter).connect(gain).connect(dest);
+      osc.start();
+      osc.stop(ctx.currentTime + dur);
+      return dur;
+    }
+  },
+  {
+    emoji: '🚂',
+    label: 'Ohio Siren (extra reverb)',
+    wrongTag: 'REVERBED',
+    play: (ctx, dest) => {
+      const dur = 2;
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      const conv = ctx.createConvolver();
+      // Fake reverb via noise IR
+      const irLen = ctx.sampleRate * 2;
+      const ir = ctx.createBuffer(2, irLen, ctx.sampleRate);
+      for (let ch = 0; ch < 2; ch++) {
+        const d = ir.getChannelData(ch);
+        for (let i = 0; i < irLen; i++) d[i] = (Math.random() * 2 - 1) * Math.exp(-i / (ctx.sampleRate * 0.8));
+      }
+      conv.buffer = ir;
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(440, ctx.currentTime);
+      osc.frequency.linearRampToValueAtTime(880, ctx.currentTime + 0.5);
+      osc.frequency.linearRampToValueAtTime(440, ctx.currentTime + 1);
+      osc.frequency.linearRampToValueAtTime(880, ctx.currentTime + 1.5);
+      osc.frequency.linearRampToValueAtTime(440, ctx.currentTime + dur);
+      gain.gain.setValueAtTime(0.15, ctx.currentTime);
+      gain.gain.linearRampToValueAtTime(0, ctx.currentTime + dur);
+      osc.connect(conv).connect(gain).connect(dest);
+      osc.connect(gain);
+      osc.start();
+      osc.stop(ctx.currentTime + dur);
+      return dur;
+    }
+  },
+  {
+    emoji: '⚡',
+    label: 'Thunder (backwards)',
+    wrongTag: 'REVERSED',
+    play: (ctx, dest) => {
+      const dur = 1.5;
+      const gain = ctx.createGain();
+      // Reversed thunder = starts loud noise, gets quieter then BOOM
+      gain.gain.setValueAtTime(0, ctx.currentTime);
+      gain.gain.linearRampToValueAtTime(0.01, ctx.currentTime + 0.8);
+      gain.gain.exponentialRampToValueAtTime(0.4, ctx.currentTime + 1.2);
+      gain.gain.linearRampToValueAtTime(0, ctx.currentTime + dur);
+      const buf = ctx.createBufferSource();
+      const buffer = ctx.createBuffer(1, ctx.sampleRate * dur, ctx.sampleRate);
+      const data = buffer.getChannelData(0);
+      for (let i = 0; i < data.length; i++) {
+        data[i] = (Math.random() * 2 - 1) * Math.exp(-(data.length - i) / (ctx.sampleRate * 0.3));
+      }
+      buf.buffer = buffer;
+      buf.connect(gain).connect(dest);
+      buf.start();
+      return dur;
+    }
+  },
+  {
+    emoji: '🐄',
+    label: 'Cow (autotuned)',
+    wrongTag: 'AUTOTUNED',
+    play: (ctx, dest) => {
+      const dur = 1.8;
+      const osc1 = ctx.createOscillator();
+      const osc2 = ctx.createOscillator();
+      const gain = ctx.createGain();
+      // Autotuned moo = snaps between perfect notes
+      const notes = [130.81, 146.83, 164.81, 174.61, 164.81, 146.83, 130.81];
+      osc1.type = 'sawtooth';
+      osc2.type = 'square';
+      osc2.frequency.value = 3;
+      const vibrato = ctx.createGain();
+      vibrato.gain.value = 15;
+      osc2.connect(vibrato).connect(osc1.frequency);
+      const step = dur / notes.length;
+      notes.forEach((f, i) => {
+        osc1.frequency.setValueAtTime(f, ctx.currentTime + i * step);
+      });
+      gain.gain.setValueAtTime(0.2, ctx.currentTime);
+      gain.gain.setValueAtTime(0.2, ctx.currentTime + dur - 0.3);
+      gain.gain.linearRampToValueAtTime(0, ctx.currentTime + dur);
+      osc1.connect(gain).connect(dest);
+      osc1.start(); osc2.start();
+      osc1.stop(ctx.currentTime + dur);
+      osc2.stop(ctx.currentTime + dur);
+      return dur;
+    }
+  },
+  {
+    emoji: '🏈',
+    label: 'Sports Horn (detuned)',
+    wrongTag: 'DETUNED',
+    play: (ctx, dest) => {
+      const dur = 1;
+      const gain = ctx.createGain();
+      gain.gain.setValueAtTime(0.2, ctx.currentTime);
+      gain.gain.linearRampToValueAtTime(0, ctx.currentTime + dur);
+      // Slightly out of tune horn harmonics
+      [261, 331, 395, 527].forEach(f => {
+        const osc = ctx.createOscillator();
+        osc.type = 'sawtooth';
+        osc.frequency.value = f * 1.037; // ~1 quarter tone sharp
+        osc.connect(gain);
+        osc.start();
+        osc.stop(ctx.currentTime + dur);
+      });
+      gain.connect(dest);
+      return dur;
+    }
+  },
+  {
+    emoji: '🌪️',
+    label: 'Tornado Warning (chipmunk)',
+    wrongTag: 'SPED UP',
+    play: (ctx, dest) => {
+      const dur = 1.2;
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      // High pitched sped up warning tone
+      osc.type = 'square';
+      osc.frequency.setValueAtTime(1760, ctx.currentTime);
+      const lfo = ctx.createOscillator();
+      lfo.frequency.value = 12;
+      const lfoGain = ctx.createGain();
+      lfoGain.gain.value = 300;
+      lfo.connect(lfoGain).connect(osc.frequency);
+      gain.gain.setValueAtTime(0.1, ctx.currentTime);
+      gain.gain.linearRampToValueAtTime(0, ctx.currentTime + dur);
+      osc.connect(gain).connect(dest);
+      osc.start(); lfo.start();
+      osc.stop(ctx.currentTime + dur);
+      lfo.stop(ctx.currentTime + dur);
+      return dur;
+    }
+  },
+  {
+    emoji: '🌾',
+    label: 'Cornfield Ambience (cursed)',
+    wrongTag: 'CURSED',
+    play: (ctx, dest) => {
+      const dur = 2.5;
+      const gain = ctx.createGain();
+      gain.gain.setValueAtTime(0.08, ctx.currentTime);
+      gain.gain.linearRampToValueAtTime(0, ctx.currentTime + dur);
+      // Eerie filtered noise with resonant sweeps
+      const noise = ctx.createBufferSource();
+      const buf = ctx.createBuffer(1, ctx.sampleRate * dur, ctx.sampleRate);
+      const d = buf.getChannelData(0);
+      for (let i = 0; i < d.length; i++) d[i] = Math.random() * 2 - 1;
+      noise.buffer = buf;
+      const f1 = ctx.createBiquadFilter();
+      f1.type = 'bandpass';
+      f1.Q.value = 20;
+      f1.frequency.setValueAtTime(200, ctx.currentTime);
+      f1.frequency.exponentialRampToValueAtTime(3000, ctx.currentTime + dur * 0.7);
+      f1.frequency.exponentialRampToValueAtTime(100, ctx.currentTime + dur);
+      noise.connect(f1).connect(gain).connect(dest);
+      noise.start();
+      return dur;
+    }
+  },
+  {
+    emoji: '🎸',
+    label: '"Hang On Sloopy" (8-bit)',
+    wrongTag: '8-BIT',
+    play: (ctx, dest) => {
+      const dur = 2;
+      const gain = ctx.createGain();
+      gain.gain.setValueAtTime(0.15, ctx.currentTime);
+      gain.gain.setValueAtTime(0.15, ctx.currentTime + dur - 0.2);
+      gain.gain.linearRampToValueAtTime(0, ctx.currentTime + dur);
+      // Square wave melody (vaguely Sloopy-esque riff, wrong key)
+      const notes = [330, 330, 440, 494, 440, 370, 330, 294, 330, 370, 330];
+      const noteLen = dur / notes.length;
+      const osc = ctx.createOscillator();
+      osc.type = 'square';
+      notes.forEach((n, i) => {
+        osc.frequency.setValueAtTime(n * 1.06, ctx.currentTime + i * noteLen);
+      });
+      osc.connect(gain).connect(dest);
+      osc.start();
+      osc.stop(ctx.currentTime + dur);
+      return dur;
+    }
+  },
+  {
+    emoji: '🛸',
+    label: 'Abduction Beam (Ohio ver.)',
+    wrongTag: 'OHIO VER.',
+    play: (ctx, dest) => {
+      const dur = 2;
+      const gain = ctx.createGain();
+      gain.gain.setValueAtTime(0.12, ctx.currentTime);
+      gain.gain.linearRampToValueAtTime(0.2, ctx.currentTime + dur * 0.6);
+      gain.gain.linearRampToValueAtTime(0, ctx.currentTime + dur);
+      const osc = ctx.createOscillator();
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(80, ctx.currentTime);
+      osc.frequency.exponentialRampToValueAtTime(4000, ctx.currentTime + dur);
+      const osc2 = ctx.createOscillator();
+      osc2.type = 'sine';
+      osc2.frequency.setValueAtTime(4000, ctx.currentTime);
+      osc2.frequency.exponentialRampToValueAtTime(80, ctx.currentTime + dur);
+      const g2 = ctx.createGain();
+      g2.gain.value = 0.08;
+      osc.connect(gain).connect(dest);
+      osc2.connect(g2).connect(dest);
+      osc.start(); osc2.start();
+      osc.stop(ctx.currentTime + dur);
+      osc2.stop(ctx.currentTime + dur);
+      return dur;
+    }
+  },
+  {
+    emoji: '🏠',
+    label: 'Suburbia (uncanny)',
+    wrongTag: 'UNCANNY',
+    play: (ctx, dest) => {
+      const dur = 2;
+      const gain = ctx.createGain();
+      gain.gain.setValueAtTime(0.1, ctx.currentTime);
+      gain.gain.linearRampToValueAtTime(0, ctx.currentTime + dur);
+      // Uncanny doorbell + humming
+      const osc1 = ctx.createOscillator();
+      osc1.type = 'triangle';
+      osc1.frequency.value = 523.25;
+      const osc2 = ctx.createOscillator();
+      osc2.type = 'triangle';
+      osc2.frequency.value = 391; // should be 392, off by 1hz = beating
+      const osc3 = ctx.createOscillator();
+      osc3.type = 'sine';
+      osc3.frequency.value = 60; // electrical hum
+      const g3 = ctx.createGain();
+      g3.gain.value = 0.06;
+      osc1.connect(gain);
+      osc2.connect(gain);
+      osc3.connect(g3).connect(dest);
+      gain.connect(dest);
+      [osc1, osc2, osc3].forEach(o => { o.start(); o.stop(ctx.currentTime + dur); });
+      return dur;
+    }
+  },
+  {
+    emoji: '🌊',
+    label: 'Lake Erie (bit-crushed)',
+    wrongTag: 'CRUSHED',
+    play: (ctx, dest) => {
+      const dur = 2.5;
+      const gain = ctx.createGain();
+      gain.gain.setValueAtTime(0.15, ctx.currentTime);
+      gain.gain.linearRampToValueAtTime(0, ctx.currentTime + dur);
+      // Bit-crushed water = low sample rate noise
+      const buf = ctx.createBuffer(1, ctx.sampleRate * dur, ctx.sampleRate);
+      const d = buf.getChannelData(0);
+      const crushRate = 20; // sample every 20th sample
+      let held = 0;
+      for (let i = 0; i < d.length; i++) {
+        if (i % crushRate === 0) {
+          held = Math.sin(i / (ctx.sampleRate * 0.5)) * 0.5 + (Math.random() * 2 - 1) * 0.5;
+          held = Math.round(held * 4) / 4; // bit crush
+        }
+        d[i] = held;
+      }
+      const src = ctx.createBufferSource();
+      src.buffer = buf;
+      const lp = ctx.createBiquadFilter();
+      lp.type = 'lowpass';
+      lp.frequency.value = 2000;
+      src.connect(lp).connect(gain).connect(dest);
+      src.start();
+      return dur;
+    }
+  },
+  {
+    emoji: '💀',
+    label: 'Ohio Final Boss',
+    wrongTag: 'FINAL',
+    play: (ctx, dest) => {
+      const dur = 2.5;
+      const gain = ctx.createGain();
+      gain.gain.setValueAtTime(0.18, ctx.currentTime);
+      gain.gain.linearRampToValueAtTime(0, ctx.currentTime + dur);
+      // Ominous chord + descending bass
+      [55, 65.41, 82.41, 110, 130.81].forEach(f => {
+        const osc = ctx.createOscillator();
+        osc.type = 'sawtooth';
+        osc.frequency.setValueAtTime(f, ctx.currentTime);
+        osc.frequency.linearRampToValueAtTime(f * 0.7, ctx.currentTime + dur);
+        const g = ctx.createGain();
+        g.gain.value = 0.06;
+        osc.connect(g).connect(gain);
+        osc.start();
+        osc.stop(ctx.currentTime + dur);
+      });
+      // Sub bass drop
+      const sub = ctx.createOscillator();
+      sub.type = 'sine';
+      sub.frequency.setValueAtTime(60, ctx.currentTime);
+      sub.frequency.linearRampToValueAtTime(20, ctx.currentTime + dur);
+      const sg = ctx.createGain();
+      sg.gain.value = 0.3;
+      sub.connect(sg).connect(gain);
+      sub.start();
+      sub.stop(ctx.currentTime + dur);
+      gain.connect(dest);
+      return dur;
+    }
+  }
+];
+
+// ========== TITLE SCRAMBLE ==========
+const titleEl = document.getElementById('mainTitle');
+const titles = ['OHIO', 'OHIO', 'OHIO', 'OIHO', 'OHIO', 'OHIO', 'OHOI', 'OHIO', 'OHIO', 'OIHO'];
+setInterval(() => {
+  titleEl.textContent = titles[Math.floor(Math.random() * titles.length)];
+}, 3000);
+
+// ========== BUILD GRID ==========
+const grid = document.getElementById('soundGrid');
+sounds.forEach((s, i) => {
+  const btn = document.createElement('button');
+  btn.className = 'sound-btn';
+  btn.innerHTML = `
+    <span class="emoji">${s.emoji}</span>
+    <span class="label">${s.label}</span>
+    <span class="wrong-tag">${s.wrongTag}</span>
+  `;
+  btn.addEventListener('click', () => playSound(i, btn));
+  grid.appendChild(btn);
+});
+
+// ========== PLAY SOUND ==========
+function playSound(index, btnEl) {
+  const ctx = getCtx();
+  const dest = ohioModeOn ? createOhioChain(ctx) : ctx.destination;
+
+  btnEl.classList.add('playing');
+  const dur = sounds[index].play(ctx, dest);
+  setTimeout(() => btnEl.classList.remove('playing'), dur * 1000);
+
+  // Glitch title
+  titleEl.classList.add('glitch');
+  setTimeout(() => titleEl.classList.remove('glitch'), 150);
+
+  // Spawn floating flag
+  spawnFlag(btnEl);
+
+  // Update meter
+  soundCount++;
+  meterValue = Math.min(100, meterValue + 8 + Math.random() * 5);
+  updateMeter();
+  updateStatus();
+}
+
+function createOhioChain(ctx) {
+  // OHIO MODE: mono + distortion + extra wrongness
+  const merger = ctx.createChannelMerger(1);
+  const dist = ctx.createWaveShaper();
+  const curve = new Float32Array(256);
+  for (let i = 0; i < 256; i++) {
+    const x = (i / 128) - 1;
+    curve[i] = (Math.PI + 100) * x / (Math.PI + 100 * Math.abs(x));
+  }
+  dist.curve = curve;
+  dist.oversample = '4x';
+  const gain = ctx.createGain();
+  gain.gain.value = 1.5;
+  merger.connect(dist).connect(gain).connect(ctx.destination);
+  return merger;
+}
+
+// ========== PLAY ALL ==========
+document.getElementById('playAll').addEventListener('click', () => {
+  const ctx = getCtx();
+  const dest = ohioModeOn ? createOhioChain(ctx) : ctx.destination;
+  const btns = document.querySelectorAll('.sound-btn');
+
+  sounds.forEach((s, i) => {
+    setTimeout(() => {
+      btns[i].classList.add('playing');
+      const dur = s.play(ctx, dest);
+      setTimeout(() => btns[i].classList.remove('playing'), dur * 1000);
+      spawnFlag(btns[i]);
+    }, Math.random() * 300);
+  });
+
+  soundCount += 12;
+  meterValue = 100;
+  updateMeter();
+  updateStatus();
+
+  titleEl.classList.add('glitch');
+  setTimeout(() => titleEl.classList.remove('glitch'), 500);
+});
+
+// ========== OHIO MODE ==========
+document.getElementById('ohioMode').addEventListener('change', (e) => {
+  ohioModeOn = e.target.checked;
+  document.body.classList.toggle('ohio-mode', ohioModeOn);
+  document.getElementById('statusWrong').textContent = ohioModeOn ? 'Wrongness: MAXIMUM' : 'Wrongness: SUBTLE';
+});
+
+// ========== METER ==========
+function updateMeter() {
+  document.getElementById('meterFill').style.width = meterValue + '%';
+  document.getElementById('meterPercent').textContent = Math.round(meterValue) + '%';
+  document.getElementById('meterFullText').classList.toggle('visible', meterValue >= 100);
+}
+
+// Meter slowly decays
+setInterval(() => {
+  if (meterValue > 0) {
+    meterValue = Math.max(0, meterValue - 0.5);
+    updateMeter();
+  }
+}, 200);
+
+// ========== STATUS ==========
+function updateStatus() {
+  document.getElementById('statusSounds').textContent = `Sounds played: ${soundCount}`;
+  const phrases = ['ALWAYS', 'INEVITABLE', 'ETERNAL', 'INESCAPABLE', 'OHIO', 'YES', 'CONFIRMED'];
+  document.getElementById('statusOhio').textContent = `Ohio status: ${phrases[Math.floor(Math.random() * phrases.length)]}`;
+}
+
+// ========== FLOATING FLAGS ==========
+function spawnFlag(el) {
+  const flag = document.createElement('div');
+  flag.className = 'flag-float';
+  const symbols = ['🏴', '⭐', '🌽', '🇺🇸', '🔴', '⚪', '🔵', '🌪️'];
+  flag.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+  const rect = el.getBoundingClientRect();
+  flag.style.left = (rect.left + rect.width / 2 - 16) + 'px';
+  flag.style.top = (rect.top) + 'px';
+  document.body.appendChild(flag);
+  setTimeout(() => flag.remove(), 3000);
+}
+</script>
+</body>
+</html>
